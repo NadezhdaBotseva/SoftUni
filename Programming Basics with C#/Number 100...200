@@ -1,6 +1,6 @@
 using System;
 
-namespace NumHundred
+namespace Number 100...200
 {
     class Program
     {
