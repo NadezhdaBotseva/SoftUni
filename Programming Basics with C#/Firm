@@ -1,0 +1,29 @@
+using System;
+
+namespace Firm
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int hoursNeeded = int.Parse(Console.ReadLine());
+            int daysAvailable = int.Parse(Console.ReadLine());
+            int employeesWorkingOvertime = int.Parse(Console.ReadLine());
+
+            double realHours = (daysAvailable * 0.9) * 8;
+            double overtime = employeesWorkingOvertime * (2 * daysAvailable);
+            double allHours = Math.Floor(realHours + overtime);
+
+
+            if (hoursNeeded <= allHours)
+            {
+                Console.WriteLine($"Yes!{Math.Abs(hoursNeeded - allHours)} hours left.");
+            }
+            else
+            {
+                Console.WriteLine($"Not enough time!{Math.Abs(hoursNeeded - allHours)} hours needed.");
+            }
+
+        }
+    }
+}
