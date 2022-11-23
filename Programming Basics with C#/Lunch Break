@@ -1,0 +1,30 @@
+using System;
+
+namespace LunchBreak
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string show = Console.ReadLine();
+            double showDuration = double.Parse(Console.ReadLine());
+            double lunchBreakduration = double.Parse(Console.ReadLine());
+
+            double lunchTime = lunchBreakduration / 8;
+            double restTime = lunchBreakduration / 4;
+            double timeavailable = lunchBreakduration - (lunchTime + restTime);
+
+            double timeDifference = Math.Abs(timeavailable - showDuration * 1.00);
+
+            if (timeavailable >= showDuration)
+            {
+                Console.WriteLine($"You have enough time to watch {show} and left with {Math.Ceiling(timeDifference)} minutes free time.");
+            }
+            else
+            {
+                Console.WriteLine($"You don't have enough time to watch {show}, you need {Math.Ceiling(timeDifference)} more minutes.");
+            }
+
+        }
+    }
+}
