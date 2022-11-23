@@ -1,0 +1,46 @@
+using System;
+
+namespace ToyShop
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {   //input
+            double tripPrice = double.Parse(Console.ReadLine());
+            int puzzleAmount = int.Parse(Console.ReadLine());
+            int dollAmount = int.Parse(Console.ReadLine());
+            int bearAmount = int.Parse(Console.ReadLine());
+            int minionAmount = int.Parse(Console.ReadLine());
+            int truckAmount = int.Parse(Console.ReadLine());
+
+            //calculations
+           
+            double puzzleMoney = puzzleAmount * 2.60;
+            double dollMoney = dollAmount * 3.00;
+            double bearMoney = bearAmount * 4.10;
+            double minionMoney = minionAmount * 8.20;
+            double truckMoney = truckAmount * 2.00;
+
+            double income = 0; 
+            int toyAmount = puzzleAmount + dollAmount + bearAmount + minionAmount + truckAmount;
+            income = puzzleMoney + dollMoney + bearMoney + minionMoney + truckMoney;
+            if (toyAmount >= 50)
+            {
+                income = income * 0.75;
+            }
+                income = income * 0.90;
+            if (income >= tripPrice)
+            {
+                double remainingMoney = income - tripPrice;
+                Console.WriteLine($"Yes! {remainingMoney:f2} lv left.");
+            }
+            else if (income < tripPrice)
+            {
+                double neededMoney = tripPrice - income;
+                Console.WriteLine($"Not enough money! {neededMoney:f2} lv needed.");
+            }
+
+
+        }
+    }
+}
