@@ -1,0 +1,28 @@
+using System;
+
+namespace FlowerShop
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int magnolias = int.Parse(Console.ReadLine());
+            int zumbuls = int.Parse(Console.ReadLine());
+            int roses = int.Parse(Console.ReadLine());
+            int cactuses = int.Parse(Console.ReadLine());
+            double giftPrice = double.Parse(Console.ReadLine());
+
+            double income = (magnolias * 3.25) + (zumbuls * 4) + (roses * 3.50) + (cactuses * 8);
+            double finalSum = income * 0.95;
+
+            if (finalSum >= giftPrice)
+            {
+                Console.WriteLine($"She is left with {Math.Floor(Math.Abs(finalSum-giftPrice))} leva.");
+            }
+            else
+            {
+                Console.WriteLine($"She will have to borrow {Math.Ceiling(Math.Abs(finalSum-giftPrice))} leva.");
+            }
+        }
+    }
+}
