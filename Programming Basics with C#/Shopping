@@ -1,0 +1,35 @@
+using System;
+
+namespace Shopping
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double budget = double.Parse(Console.ReadLine());
+            int videocards = int.Parse(Console.ReadLine());
+            int processors = int.Parse(Console.ReadLine());
+            int rams = int.Parse(Console.ReadLine());
+
+            double expensesVideocards = videocards * 250;
+            double expensesProcessors = (expensesVideocards * 0.35) * processors;
+            double expensesRams = (expensesVideocards * 0.10) * rams;
+            double allExpenses = expensesVideocards + expensesProcessors + expensesRams;
+
+            if (videocards > processors)
+            {
+                allExpenses *= 0.85;
+            }
+
+            if (budget >= allExpenses)
+            {
+                Console.WriteLine($"You have {Math.Abs(budget - allExpenses):f2} leva left!");
+            }
+            else
+            {
+                Console.WriteLine($"Not enough money! You need {Math.Abs(budget - allExpenses):f2} leva more!");
+            }
+
+        }
+    }
+}
