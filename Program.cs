@@ -1,73 +1,26 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Furniture
+namespace MatchDates
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string input = string.Empty;
+            string pattern = @"(?<day>\d{2})(?<separator>[\.|\/]|-)(?<month>[A-Z][a-z]{2})\2(?<year>\d{4})";
 
-            string pattern = @">>[A-Za-z]+<<\d+(\.[0-9]*)?!\d+";
+            string input = Console.ReadLine();
 
-            double totalSum = 0;
+            var matches = Regex.Matches(input, pattern);
 
-            Console.WriteLine("Bought furniture:");
-
-            while ((input = Console.ReadLine()) != "Purchase")
+            foreach (Match item in matches)
             {
-                Regex regex = new Regex(pattern);
+                string day = item.Groups["day"].Value;
+                string month = item.Groups["month"].Value;
+                string year = item.Groups["year"].Value;
 
-                if (regex.IsMatch(input))
-                {
-                    string productPattern = @">>[A-Za-z]+<<";
-
-                    var productMatch = Regex.Match(input, productPattern);
-
-                    string productToGet = productMatch.Value;
-                    string product = string.Empty;
-
-                    for (int i = 2; i < productToGet.Length - 2; i++)
-                    {
-                        product += productToGet[i];
-                    }
-
-                    string pricePattern = @"\d+(\.[0-9]*)?!";
-
-                    var priceMatch = Regex.Match(input, pricePattern);
-
-                    string priceToGet = priceMatch.Value;
-                    string priceString = string.Empty;
-
-                    for (int i = 0; i < priceToGet.Length - 1; i++)
-                    {
-                        priceString += priceToGet[i];
-                    }
-
-                    double price = Double.Parse(priceString);
-
-                    string quantityPattern = @"!\d+";
-
-                    var quantityMatch = Regex.Match(input, quantityPattern);
-
-                    string quantityToGet = quantityMatch.Value;
-                    string quantityString = string.Empty;
-
-                    for (int i = 1; i < quantityToGet.Length; i++)
-                    {
-                        quantityString += quantityToGet[i];
-                    }
-
-                    int quantity = int.Parse(quantityString);
-
-                    totalSum += quantity * price;
-
-                    Console.WriteLine($"{product}");
-                }
+                Console.WriteLine($"Day: {day}, Month: {month}, Year: {year}");
             }
-
-            Console.WriteLine($"Total money spend: {totalSum:f2}");
         }
     }
 }
